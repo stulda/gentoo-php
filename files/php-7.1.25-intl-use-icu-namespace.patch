@@ -1,0 +1,35 @@
+Based on the following upstream commits:
+
+https://github.com/php/php-src/commit/8d35a423838eb462cd39ee535c5d003073cc5f22
+https://github.com/php/php-src/commit/d8200e48857aeaf09f7127751efc5632ef7660a7
+https://github.com/php/php-src/commit/9a8e7b571896f39f83cb000fdb7c466b6d328d52
+
+--- a/ext/intl/breakiterator/breakiterator_class.cpp
++++ b/ext/intl/breakiterator/breakiterator_class.cpp
+@@ -38,6 +38,7 @@ extern "C" {
+ }
+ 
+ using PHP::CodePointBreakIterator;
++using icu::RuleBasedBreakIterator;
+ 
+ /* {{{ Global variables */
+ zend_class_entry *BreakIterator_ce_ptr;
+--- a/ext/intl/breakiterator/breakiterator_class.h
++++ b/ext/intl/breakiterator/breakiterator_class.h
+@@ -26,6 +26,8 @@
+ 
+ #ifndef USE_BREAKITERATOR_POINTER
+ typedef void BreakIterator;
++#else
++using icu::BreakIterator;
+ #endif
+ 
+ typedef struct {
+--- a/ext/intl/breakiterator/breakiterator_methods.cpp
++++ b/ext/intl/breakiterator/breakiterator_methods.cpp
+@@ -32,6 +32,8 @@ extern "C" {
+ }
+ 
+ using PHP::CodePointBreakIterator;
++using icu::BreakIterator;
++using icu::Locale;
